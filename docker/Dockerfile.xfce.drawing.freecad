@@ -1,5 +1,5 @@
-ARG BASEIMAGE=ubuntu
-ARG BASETAG=24.04
+ARG BASEIMAGE=nvidia/cuda
+ARG BASETAG=12.4.1-devel-ubuntu20.04
 
 ARG ARG_MERGE_STAGE_VNC_BASE=stage_vnc
 ARG ARG_MERGE_STAGE_MESA_BASE=merge_stage_vnc
@@ -300,7 +300,7 @@ RUN \
     ### Set VirtualLG defaults, xauth bits, this adds a DRI line to xorg.conf
     #/opt/VirtualGL/bin/vglserver_config -config +s +f -t
     ### access open to all users, because restricting users doesn't really work
-    #/opt/VirtualGL/bin/vglserver_config -config -s -f +t 
+    #/opt/VirtualGL/bin/vglserver_config -config -s -f +t
 
 
 ####################
@@ -464,7 +464,7 @@ RUN \
     && cp /tmp/g3-cache/freecad/"${FREECAD_APPIMAGE}" "${FREECAD_PATH}" \
     && chmod 775 "${FREECAD_PATH}"/"${FREECAD_APPIMAGE}"
 
-COPY ./xfce-freecad/src/freecad "${FREECAD_PATH}"/ 
+COPY ./xfce-freecad/src/freecad "${FREECAD_PATH}"/
 COPY ./xfce-freecad/src/home/Desktop "${HOME}"/Desktop/
 
 RUN \
